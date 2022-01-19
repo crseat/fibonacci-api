@@ -4,11 +4,12 @@ package domain
 import (
 	"fibonacci-api/dto"
 	"fibonacci-api/errs"
+	"time"
 )
 
 type Sequence struct {
-	Fib      int
-	Duration int64
+	Fib      int64
+	Duration time.Duration
 	Algo     string
 	Input    int
 	Status   string
