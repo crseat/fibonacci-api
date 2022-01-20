@@ -7,7 +7,7 @@ import (
 
 type NewRequest struct {
 	Algorithm string
-	Id        int
+	Id        int64
 }
 
 //Validate the algorithm that was passed in.

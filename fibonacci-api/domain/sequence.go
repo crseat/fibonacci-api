@@ -4,6 +4,7 @@ package domain
 import (
 	"fibonacci-api/dto"
 	"fibonacci-api/errs"
+	"sync"
 	"time"
 )
 
@@ -28,6 +29,6 @@ func (sequence Sequence) ToNewResponseDto() dto.NewResponse {
 
 //FibRepository defines the interface for calculating and retrieving Sequence objects.
 type FibRepository interface {
-	CalculateFib(input int, algo string) (*Sequence, *errs.AppError)
-	FindBy(id int) (*Sequence, *errs.AppError)
+	CalculateFib(input int, algo string, wg *sync.WaitGroup) (int64, *errs.AppError)
+	FindBy(id int64) (*Sequence, *errs.AppError)
 }
