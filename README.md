@@ -13,7 +13,7 @@ It supports multiple connections simultaneously, and provides the following endp
  
   - `/find/id`
     - input: id which was passed to the user from the /fib/algorithm endpoint. GET
-    - output: json encoded list of details about the request. If the number is not done calculating "status" will be set to incomplete
+    - output: json encoded list of details about the request. If the number is not done calculating "status" will be set to incomplete. Duration is in microseconds.
     - example_input: curl http://localhost:8000/find/1
     - example_output: {"Input":50,"Fib":7778742049,"Duration":123,"Algo":"math","Status":"complete","Id":1}
  
