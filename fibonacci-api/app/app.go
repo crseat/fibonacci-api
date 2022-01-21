@@ -57,7 +57,7 @@ func Start(port string) {
 		wg.Wait()
 		server.SetKeepAlivesEnabled(false)
 		if err := server.Shutdown(ctx); err != nil {
-			logger.ErrorLogger.Fatal("Could not gracefully shutdown the server: %v\n", err)
+			logger.ErrorLogger.Fatal("Could not gracefully shutdown the server: ", err)
 		}
 	}()
 
