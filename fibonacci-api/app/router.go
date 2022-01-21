@@ -8,20 +8,17 @@ import (
 	"path"
 	"strings"
 	"sync"
-	"time"
 )
 
 type Router struct {
-	Handler   *Handler
+	Handler   *fibHandler
 	WaitGroup *sync.WaitGroup
 	quitChan  *chan bool
 }
 
 //define routes
 func (router *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-
 	var head string
-	var startTime time.Time
 
 	//Check for invalid method.
 	if r.Method != http.MethodPost && r.Method != http.MethodGet {
@@ -34,10 +31,15 @@ func (router *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	//Define routes.
 	switch head {
 	case "fib":
-		//check for id
+		//check for algo
 		var algorithm string
 		algorithm, r.URL.Path = shiftPath(r.URL.Path)
-		router.Handler.NewSequence(w, r, startTime, router.WaitGroup, algorithm)
+		router.Handler.NewSequence(w, r, router.WaitGroup, algorithm)
+	case "find":
+		//check for id
+		var id string
+		id, r.URL.Path = shiftPath(r.URL.Path)
+		router.Handler.FindBy(w, id)
 	case "shutdown":
 		//Shutdown gracefully
 		shutdown(*router.quitChan)

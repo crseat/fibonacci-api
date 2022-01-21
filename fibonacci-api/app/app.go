@@ -20,7 +20,7 @@ func Start(port string) {
 
 	//wiring
 	fibRepository := domain.NewFibRepository()
-	Handler := Handler{
+	Handler := fibHandler{
 		fibService: service.NewFibonacciService(fibRepository),
 	}
 
